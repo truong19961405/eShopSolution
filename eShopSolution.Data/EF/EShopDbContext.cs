@@ -8,26 +8,34 @@ using System.Text;
 using System.Threading.Tasks;
 namespace eShopSolution.Data.EF
 {
-    public class EShopDbComtext : DbContext
+    public class EShopDbContext : DbContext
     {
-        public EShopDbComtext(DbContextOptions options ): base(options)
+        public EShopDbContext(DbContextOptions options ): base(options)
         {
 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new CartConfiguration());
             modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryTranslationConfiguration());
+            modelBuilder.ApplyConfiguration(new ContactConfiguration());
+            modelBuilder.ApplyConfiguration(new LanguageConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
+            modelBuilder.ApplyConfiguration(new PromotionConfiguration());
+            modelBuilder.ApplyConfiguration(new TransactionConfiguration());
 
+            //modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
             //base.OnModelCreating(modelBuilder);
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<AppConfig> AppConfigs { get; set; }
-        public DbSet<AppRole> AppRoleses { get; set; }
-        public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
         public DbSet<Contact> Contacts { get; set; }
@@ -38,7 +46,6 @@ namespace eShopSolution.Data.EF
         public DbSet<ProductInCategory> ProductInCategories { get; set; }
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
-        public DbSet<Slide> Slides { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
     }
 }

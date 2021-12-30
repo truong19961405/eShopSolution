@@ -22,6 +22,6 @@ namespace eShopSolution.Data.Entities
 
         public Guid UserId { get; set; }
 
-        public AppUser AppUser { get; set; }
+        //public AppUser AppUser { get; set; }
     }
 }
